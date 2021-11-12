@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/foguete_parado.png">
+    <title>Intelligence Kapital Unisersity</title>
+
+</head>
+<body>
+    <div id="canvas">
+        <canvas></canvas>
+    </div>
+
+    <script src="rocket.js"></script>
+    <script src="mouse.js"></script>
+    <script src="colision.js"></script>
+    <script src="animation.js"></script>
+    <script src="spriteSheet.js"></script>
+    <script src="world.js"></script>
+    <script src="background.js"></script>
+
+    <script>
+        let cnv = document.querySelector('canvas');
+        let ctx = cnv.getContext('2d');
+        ctx.fillStyle = "black"
+        ctx.fillRect(0, 0, cnv.width, cnv.height)
+        document.getElementById('canvas').style.cursor="none";
+        document.body.style.background = "black"
+
+//Canvas=======================================================================
+    let colision = new Colision();
+    let animation = new Animation(ctx, cnv, colision);
+
+//Ferramentas==================================================================
+    let background_image = new Image();
+        background_image.src = "images/background2.png";
+        background_image.onload = loaded();
+
+    let world1_img = new Image();
+        world1_img.src = "images/world1.png";
+        world1_img.onload = loaded();
+    
+    let world2_img = new Image()
+        world2_img.src = "images/world2.png";
+        world2_img.onload = loaded();
+
+    let world3_img = new Image()
+        world3_img.src = "images/world3.png";
+        world3_img.onload = loaded();
+    
+    let world4_img = new Image()
+        world4_img.src = "images/world4.png";
+        world4_img.onload = loaded();
+
+    let ship_img = new Image();
+        ship_img.src = "images/foguete_parado.png";
+        ship_img.onload = loaded();
+
+//Imagens======================================================================
+    let background = new Background(ctx, background_image);
+    animation.newSprite(background);
+
+    let world1 = new World(ctx, world1_img, 500, 70);
+    animation.newSprite(world1);
+    colision.addNewObject(world1);
+
+    let world2 = new World(ctx, world2_img, 150, 200);
+    animation.newSprite(world2);
+    colision.addNewObject(world2);
+
+    let world3 = new World(ctx, world3_img, 550, 500);
+    animation.newSprite(world3);
+    colision.addNewObject(world3)
+
+    let world4 = new World(ctx, world4_img, 800, 220);
+    animation.newSprite(world4); 
+    colision.addNewObject(world4);
+
+    let ship = new Ship(ctx, ship_img, cnv);
+    animation.newSprite(ship);
+    colision.addNewObject(ship);
+
+    let mouse = new Mouse(ship);
+    animation.newSprite(mouse)
+//Elementos=da=tela============================================================
+
+    </script>
+</body>
+</html>

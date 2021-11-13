@@ -3,9 +3,10 @@
     padding:0;
 }
 
-
-html, body {margin: 0; height: 100%; overflow: hidden}
-
+html, body {
+    position:relative;
+    overflow-x:hidden;
+  }
 
 body{
     background-image: url("mainBackground.svg");
@@ -66,9 +67,6 @@ nav{
 
 
 @media (max-width: 999px){
-    body{
-        overflow-x: hidden;
-    }
     .nav-list{
         position: absolute;
         top: 8vh; /*ficará logo abaixo do header*/
@@ -96,6 +94,8 @@ nav{
 
 .nav-list.active {
     transform: translateX(0);
+    transition: transform 0.3s ease-out;
+    display: flex;
 }
 
 
